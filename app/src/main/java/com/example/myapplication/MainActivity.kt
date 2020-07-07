@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         val recyclerView: RecyclerView = findViewById(R.id.contact_recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
+        recyclerView.addItemDecoration(ContactItemDecoration(this))
     }
 
     private fun loadContacts() {
