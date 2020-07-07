@@ -4,7 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class ContactAdapter : RecyclerView.Adapter<ContactViewHolder>() {
+class ContactAdapter(
+    private val contactClickListener: ContactClickListener
+) : RecyclerView.Adapter<ContactViewHolder>() {
 
     private var items: List<ContactViewData> = emptyList()
 
@@ -20,7 +22,7 @@ class ContactAdapter : RecyclerView.Adapter<ContactViewHolder>() {
             false
         )
 
-        return ContactViewHolder(view)
+        return ContactViewHolder(view, contactClickListener)
     }
 
     override fun getItemCount(): Int = items.size

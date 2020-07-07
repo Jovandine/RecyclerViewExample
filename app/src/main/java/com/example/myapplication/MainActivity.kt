@@ -2,12 +2,15 @@ package com.example.myapplication
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 private const val CONTACT_COUNT = 50
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(),
+        ContactClickListener
+{
 
     private lateinit var adapter: ContactAdapter
 
@@ -19,8 +22,12 @@ class MainActivity : AppCompatActivity() {
         loadContacts()
     }
 
+    override fun onContactClick(contactViewData: ContactViewData) {
+        Toast.makeText(this, contactViewData.toString(), Toast.LENGTH_SHORT).show()
+    }
+
     private fun initContactList() {
-        adapter = ContactAdapter()
+        adapter = ContactAdapter(contactClickListener = this)
         val recyclerView: RecyclerView = findViewById(R.id.contact_recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
